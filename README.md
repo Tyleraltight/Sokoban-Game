@@ -1,85 +1,92 @@
+[中文版](./README_zh.md) | [English](./README.md)
+
 # Sokoban Game
 
-一个基于 Java Swing 实现的经典推箱子游戏，包含自研音效系统和多关卡设计。
+A classic Sokoban puzzle game implemented in Java Swing with custom audio feedback system.
 
-## 项目概述
+## Project Overview
 
-推箱子是一款经典的益智游戏，玩家需要将所有箱子推到指定目标位置。本项目采用 Java Swing 框架开发，实现了完整的游戏逻辑、图形界面和音效反馈。
+Sokoban is a traditional puzzle game where players push boxes to designated target positions. This project implements the complete game logic, graphical interface, and audio feedback using the Java Swing framework.
 
-## 功能特性
+## Key Features
 
-### 游戏核心
-- **多关卡设计**：当前包含 4 个精心设计的关卡，难度递进
-- **步数统计**：实时显示当前关卡的移动步数
-- **关卡重置**：按 `R` 键快速重置当前关卡
-- **关卡切换**：通关后自动进入下一关
+### Core Gameplay
+- **Multi-Level Design**: 4 carefully designed levels with progressive difficulty
+- **Step Counter**: Real-time display of current level move count
+- **Level Reset**: Press `R` to quickly reset the current level
+- **Level Progression**: Automatic advancement to the next level upon completion
 
-### 操作控制
-| 按键 | 功能 |
-|------|------|
-| `↑` `↓` `←` `→` | 移动玩家 |
-| `R` | 重置当前关卡 |
-| `M` | 静音/取消静音 |
+### Controls
 
-### 技术亮点
-- **自研音效系统**：基于 `javax.sound.sampled` 的实时音频生成
-  - 移动音效
-  - 推箱子音效
-  - 撞墙音效
-  - 胜利音效
-  - 简易背景音乐
-- **异步音频播放**：音效在独立线程中播放，不阻塞 UI
-- **双缓冲渲染**：使用 Swing 默认双缓冲机制，保证流畅动画
-- **图片资源加载**：支持类路径和文件系统双模式加载
-- **降级渲染**：图片加载失败时自动使用图形替代
+| Key | Function |
+|-----|----------|
+| `↑` `↓` `←` `→` | Move player |
+| `R` | Reset current level |
+| `M` | Toggle mute/unmute |
 
-## 技术栈
+### Technical Highlights
+- **Custom Audio System**: Real-time audio generation using `javax.sound.sampled`
+  - Movement sound effects
+  - Box pushing sounds
+  - Wall collision sounds
+  - Victory sounds
+  - Background music (BGM)
+- **Asynchronous Audio Playback**: Sound effects play in separate threads, non-blocking to UI
+- **Double-Buffered Rendering**: Utilizes Swing's default double-buffering mechanism for smooth animations
+- **Dual-Mode Image Loading**: Supports both class path and file system resource loading
+- **Fallback Rendering**: Automatic graphical fallback when image loading fails
 
-- **语言**：Java
-- **GUI 框架**：Java Swing
-- **音频处理**：Java Sound API (`javax.sound.sampled`)
+## Technology Stack
 
-## 项目结构
+| Component | Technology |
+|-----------|------------|
+| Language | Java |
+| GUI Framework | Java Swing (JFrame, JPanel) |
+| Event Handling | AWT KeyAdapter |
+| Audio Processing | Java Sound API (`javax.sound.sampled`) |
+| Rendering | Swing double-buffering |
+
+## Project Structure
 
 ```
-PushingBoxGame/
-├── MovingBox.java      # 主程序入口
-├── GamePanel.java      # 游戏渲染面板（内部类）
-├── kirby.jpg           # 玩家角色图片
-└── download.png        # 箱子图片
+SokobanGame/
+├── MovingBox.java      # Main application entry
+├── kirby.jpg           # Player character sprite
+├── download.png        # Box sprite
+└── README_zh.md        # Chinese documentation
 ```
 
-## 运行方式
+## Installation & Usage
 
-### 前置要求
-- JDK 8 或更高版本
+### Prerequisites
+- JDK 8 or higher
 
-### 编译运行
+### Compile & Run
 ```bash
-# 编译
+# Compile
 javac MovingBox.java
 
-# 运行
+# Run
 java PushingBoxGame.MovingBox
 ```
 
-或使用 IDE（如 IntelliJ IDEA、Eclipse）直接运行主类 `MovingBox`。
+Alternatively, run the main class `MovingBox` directly from an IDE (IntelliJ IDEA, Eclipse).
 
-## 游戏元素
+## Game Elements
 
-| 符号 | 说明 |
-|------|------|
-| `W` | 墙壁（不可穿越） |
-| `T` | 目标点 |
-| `B` | 箱子 |
-| `P` | 玩家 |
-| `.` | 地板 |
-| `*` | 已完成的箱子（推到目标点） |
+| Symbol | Description |
+|--------|-------------|
+| `W` | Wall (impassable) |
+| `T` | Target point |
+| `B` | Box |
+| `P` | Player |
+| `.` | Floor |
+| `*` | Completed box (pushed to target) |
 
-## 开发说明
+## Development Notes
 
-### 关卡设计
-关卡数据存储在 `levels` 二维数组中，每个关卡是一个字符串数组。可以按以下格式添加新关卡：
+### Level Design
+Level data is stored in the `levels` two-dimensional array. Each level is a string array. New levels can be added in the following format:
 
 ```java
 {"WWWWWW",
@@ -89,11 +96,11 @@ java PushingBoxGame.MovingBox
  "WWWWWW"}
 ```
 
-### 音效自定义
-修改 `playTone(int freq, int ms)` 方法可以调整音效参数：
-- `freq`: 音频频率（Hz）
-- `ms`: 持续时长（毫秒）
+### Audio Customization
+Modify the `playTone(int freq, int ms)` method to adjust sound effect parameters:
+- `freq`: Audio frequency (Hz)
+- `ms`: Duration (milliseconds)
 
 ## License
 
-MIT License
+MIT License - see [LICENSE](LICENSE) for details.
